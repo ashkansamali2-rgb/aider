@@ -246,7 +246,7 @@ class InputOutput:
         tool_output_color=None,
         tool_error_color="red",
         tool_warning_color="#FFA500",
-        assistant_output_color="blue",
+        assistant_output_color="#4A90E2",  # Soft blue for assistant output
         completion_menu_color=None,
         completion_menu_bg_color=None,
         completion_menu_current_color=None,
@@ -507,11 +507,8 @@ class InputOutput:
                 raise
 
     def rule(self):
-        if self.pretty:
-            style = dict(style=self.user_input_color) if self.user_input_color else dict()
-            self.console.rule(**style)
-        else:
-            print()
+        # Removed the rule method to eliminate horizontal lines
+        pass
 
     def interrupt_input(self):
         if self.prompt_session and self.prompt_session.app:
@@ -529,7 +526,7 @@ class InputOutput:
         abs_read_only_fnames=None,
         edit_format=None,
     ):
-        self.rule()
+        # Removed the rule() call to eliminate horizontal lines
 
         # Ring the bell if needed
         self.ring_bell()
@@ -547,7 +544,7 @@ class InputOutput:
             prompt_prefix += edit_format
         if self.multiline_mode:
             prompt_prefix += (" " if edit_format else "") + "multi"
-        prompt_prefix += "> "
+        prompt_prefix += "❯ "  # Changed from ">" to "❯"
 
         show += prompt_prefix
         self.prompt_prefix = prompt_prefix
